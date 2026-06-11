@@ -242,7 +242,7 @@ class DonasiResource extends Resource
                 ImageColumn::make('foto_penggunaan')
                     ->label('Bukti Pakai')
                     ->disk('public')
-                    ->getStateUsing(fn ($record) => $record->foto_penggunaan[0] ?? null)
+                    ->state(fn ($record) => is_array($record->foto_penggunaan) ? ($record->foto_penggunaan[0] ?? null) : null)
                     ->circular()
                     ->size(40)
                     ->toggleable(),
