@@ -9,6 +9,8 @@
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^4.0",
         "filament/filament": "^4.0",
+        "ext-intl": "*",
+        "ext-zip": "*",
         "flowframe/laravel-trend": "^0.4.0",
         "laravel/fortify": "^1.30",
         "laravel/framework": "^12.0",
