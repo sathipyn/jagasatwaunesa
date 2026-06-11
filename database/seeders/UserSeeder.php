@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Super Admin
-        $superAdmin = User::create([
+        $superAdmin = User::firstOrCreate([
             'nama_lengkap' => 'Super Admin JagaSatwa',
             'email' => 'admin@jagasatwa.com',
             'username' => 'superadmin',
@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         $superAdmin->assignRole('super_admin');
 
         // Admin Rescue (Divisi RnT)
-        $adminRescue = User::create([
+        $adminRescue = User::firstOrCreate([
             'nama_lengkap' => 'Admin Rescue',
             'email' => 'rescue@jagasatwa.com',
             'username' => 'adminrescue',
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         $adminRescue->assignRole('admin_rescue');
 
         // Admin Donasi (Bendahara)
-        $adminDonasi = User::create([
+        $adminDonasi = User::firstOrCreate([
             'nama_lengkap' => 'Admin Donasi',
             'email' => 'donasi@jagasatwa.com',
             'username' => 'admindonasi',
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
         $adminDonasi->assignRole('admin_donasi');
 
         // User biasa (untuk testing)
-        $userTest = User::create([
+        $userTest = User::firstOrCreate([
             'nama_lengkap' => 'User Test',
             'email' => 'user@test.com',
             'username' => 'usertest',
