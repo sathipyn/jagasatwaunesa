@@ -272,7 +272,8 @@ class DonasiResource extends Resource
 
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make(),
+                EditAction::make()
+                ->label('Beri Hasil'),
                 DeleteAction::make(),
             ])
 
