@@ -41,12 +41,6 @@
             </div>
 
             <div class="mx-auto mt-10 max-w-5xl space-y-6">
-                <div class="rounded-[2rem] border border-pink-100 bg-white/90 p-6 shadow-xl shadow-pink-100/60 backdrop-blur sm:p-8">
-                    <p class="text-sm font-semibold tracking-wide text-pink-500">
-                        contoh asli penggunaan donasi yang dilaporkan ke tim jagasatwa
-                    </p>
-                </div>
-
                 <div class="-mx-4 flex gap-5 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
                     @forelse($contohPenggunaanDonasi as $item)
                         <article class="w-[82vw] max-w-sm shrink-0 overflow-hidden rounded-[1.75rem] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg lg:w-auto lg:max-w-none">
@@ -94,10 +88,7 @@
                         </article>
                     @empty
                         <div class="w-[82vw] max-w-sm shrink-0 rounded-3xl border border-dashed border-pink-200 bg-pink-50/50 p-8 text-center lg:col-span-3 lg:w-auto lg:max-w-none">
-                            <p class="text-sm font-semibold text-gray-800">Belum ada donasi yang ditampilkan ke publik.</p>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Kalau sudah ada data asli, admin tinggal menyalakan toggle <code>Tampilkan di halaman publik</code> pada donasi yang ingin dibuka ke pengunjung.
-                            </p>
+                            <p class="text-sm font-semibold text-gray-800">Belum ada donasi untuk ditampilkan.</p>
                         </div>
                     @endforelse
                 </div>

@@ -95,10 +95,7 @@
                         </article>
                     @empty
                         <div class="w-[82vw] max-w-sm shrink-0 rounded-3xl border border-dashed border-pink-200 bg-pink-50/50 p-8 text-center lg:col-span-3 lg:w-auto lg:max-w-none">
-                            <p class="text-sm font-semibold text-gray-800">Belum ada laporan kasus yang ditampilkan ke publik.</p>
-                            <p class="mt-2 text-sm leading-6 text-gray-500">
-                                Kalau sudah ada laporan asli, admin tinggal menyalakan toggle <code>Tampilkan di halaman publik</code> pada laporan yang ingin dibuka ke pengunjung.
-                            </p>
+                            <p class="text-sm font-semibold text-gray-800">Belum ada laporan kasus untuk ditampilkan.</p>
                         </div>
                     @endforelse
                 </div>
