@@ -56,6 +56,7 @@ class LaporanKasus extends Model
         'hasil_penanganan',
         'foto_penanganan',
         'tanggal_penanganan',
+        'tampil_di_publik',
         
         
     ];
@@ -67,6 +68,7 @@ class LaporanKasus extends Model
             'foto_penanganan' => 'array',
             'bukti_pendukung' => 'array',
             'tanggal_penanganan' => 'date',
+            'tampil_di_publik' => 'boolean',
         ];
     }
 
@@ -74,6 +76,11 @@ class LaporanKasus extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeDitampilkanDiPublik($query)
+    {
+        return $query->where('tampil_di_publik', true);
     }
 
     public static function kategoriKasusOptions(): array

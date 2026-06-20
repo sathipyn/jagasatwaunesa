@@ -17,11 +17,13 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Toggle;
 
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\IconColumn;
 
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -103,6 +105,12 @@ class DonasiResource extends Resource
                         ])
                         ->native(false)
                         ->required(),
+
+                    Toggle::make('tampil_di_publik')
+                        ->label('Tampilkan di halaman publik')
+                        ->default(false)
+                        ->helperText('Aktifkan jika donasi ini boleh dijadikan contoh di halaman donasi untuk pengunjung umum.')
+                        ->columnSpanFull(),
 
                     Textarea::make('deskripsi')
                         ->label('Deskripsi / Catatan')
@@ -232,6 +240,11 @@ class DonasiResource extends Resource
                     ->date('d M Y')
                     ->toggleable(),
 
+                IconColumn::make('tampil_di_publik')
+                    ->label('Publik')
+                    ->boolean()
+                    ->toggleable(),
+
                 ImageColumn::make('bukti_transfer')
                     ->label('Bukti')
                     ->disk('public')
@@ -268,12 +281,14 @@ class DonasiResource extends Resource
                     ]),
                 Tables\Filters\TernaryFilter::make('tanggal_penggunaan')
                     ->label('Sudah dipakai'),
+                Tables\Filters\TernaryFilter::make('tampil_di_publik')
+                    ->label('Ditampilkan di publik'),
             ])
 
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make()
-                ->label('Beri Hasil'),
+                ->label('Beri Bukti'),
                 DeleteAction::make(),
             ])
 

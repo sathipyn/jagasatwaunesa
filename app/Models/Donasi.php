@@ -22,6 +22,7 @@ class Donasi extends Model
         'hasil_penggunaan',
         'foto_penggunaan',
         'tanggal_penggunaan',
+        'tampil_di_publik',
     ];
 
     protected function casts(): array
@@ -31,6 +32,7 @@ class Donasi extends Model
             'jumlah_donasi' => 'double',
             'tanggal_penggunaan' => 'date',
             'foto_penggunaan' => 'array',
+            'tampil_di_publik' => 'boolean',
         ];
     }
 
@@ -38,5 +40,10 @@ class Donasi extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeDitampilkanDiPublik($query)
+    {
+        return $query->where('tampil_di_publik', true);
     }
 }

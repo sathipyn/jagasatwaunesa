@@ -17,12 +17,14 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Toggle;
 
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Columns\IconColumn;
 
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -138,6 +140,12 @@ class LaporanKasusResource extends Resource
                         ->default('Diproses')
                         ->native(false)
                         ->required(),
+
+                    Toggle::make('tampil_di_publik')
+                        ->label('Tampilkan di halaman publik')
+                        ->default(false)
+                        ->helperText('Aktifkan jika laporan ini boleh dijadikan contoh di halaman publik untuk pengunjung umum.')
+                        ->columnSpanFull(),
                         
                     DatePicker::make('tanggal_penanganan')
                         ->label('Tanggal Penanganan')
@@ -232,6 +240,11 @@ class LaporanKasusResource extends Resource
                         'Diproses' => 'Diproses',
                         'Selesai'  => 'Selesai',
                     ]),
+
+                IconColumn::make('tampil_di_publik')
+                    ->label('Publik')
+                    ->boolean()
+                    ->toggleable(),
             ])
 
             ->defaultSort('created_at', 'desc')
@@ -246,6 +259,8 @@ class LaporanKasusResource extends Resource
                 Tables\Filters\SelectFilter::make('kategori_kasus')
                     ->label('Kategori')
                     ->options(LaporanKasus::kategoriKasusOptions()),
+                Tables\Filters\TernaryFilter::make('tampil_di_publik')
+                    ->label('Ditampilkan di publik'),
             ])
 
             ->recordActions([

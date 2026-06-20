@@ -20,19 +20,19 @@
                 <div class="mt-7 grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
                     @php
                         $programDonasi = [
-                            ['title' => 'Pakan', 'emoji' => '🍽️'],
-                            ['title' => 'Sterilisasi', 'emoji' => '✂️'],
-                            ['title' => 'Pengobatan', 'emoji' => '💊'],
-                            ['title' => 'Vaksinasi', 'emoji' => '💉'],
-                            ['title' => 'Rescue', 'emoji' => '🚑'],
-                            ['title' => 'Lainnya', 'emoji' => '🐾'],
+                            ['title' => 'Pakan', 'emoji' => '&#x1F37D;&#xFE0F;'],
+                            ['title' => 'Sterilisasi', 'emoji' => '&#x2702;&#xFE0F;'],
+                            ['title' => 'Pengobatan', 'emoji' => '&#x1F48A;'],
+                            ['title' => 'Vaksinasi', 'emoji' => '&#x1F489;'],
+                            ['title' => 'Rescue', 'emoji' => '&#x1F691;'],
+                            ['title' => 'Lainnya', 'emoji' => '&#x1F43E;'],
                         ];
                     @endphp
 
                     @foreach($programDonasi as $item)
                         <div class="flex flex-col items-center text-center">
                             <div class="inline-flex h-16 w-16 items-center justify-center rounded-full border border-gray-300 bg-white text-2xl shadow-sm">
-                                {{ $item['emoji'] }}
+                                {!! $item['emoji'] !!}
                             </div>
                             <p class="mt-2 text-xs font-semibold text-gray-800 sm:text-sm">{{ $item['title'] }}</p>
                         </div>
@@ -40,6 +40,68 @@
                 </div>
             </div>
 
+            <div class="mx-auto mt-10 max-w-5xl space-y-6">
+                <div class="rounded-[2rem] border border-pink-100 bg-white/90 p-6 shadow-xl shadow-pink-100/60 backdrop-blur sm:p-8">
+                    <p class="text-sm font-semibold tracking-wide text-pink-500">
+                        contoh asli penggunaan donasi yang dilaporkan ke tim jagasatwa
+                    </p>
+                </div>
+
+                <div class="-mx-4 flex gap-5 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
+                    @forelse($contohPenggunaanDonasi as $item)
+                        <article class="w-[82vw] max-w-sm shrink-0 overflow-hidden rounded-[1.75rem] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg lg:w-auto lg:max-w-none">
+                            <div class="aspect-[16/10] bg-gradient-to-br from-pink-100 via-rose-50 to-amber-50">
+                                @if(!empty($item['foto']))
+                                    <img
+                                        src="{{ route('media.public', ['path' => $item['foto']]) }}"
+                                        alt="{{ $item['judul'] }}"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="h-full w-full object-cover object-center"
+                                    >
+                                @else
+                                    <div class="flex h-full items-center justify-center text-6xl text-pink-300">&#x1F5BC;&#xFE0F;</div>
+                                @endif
+                            </div>
+
+                            <div class="p-5">
+                                <div class="flex items-start justify-between gap-3">
+                                    <span class="inline-flex rounded-full bg-pink-100 px-3 py-1 text-xs font-semibold text-pink-700">
+                                        {{ $item['kategori'] }}
+                                    </span>
+                                    <span class="text-sm font-bold text-gray-400">{{ $item['nominal'] }}</span>
+                                </div>
+
+                                <h3 class="mt-4 text-xl font-extrabold leading-7 text-gray-900">{{ $item['judul'] }}</h3>
+                                <p class="mt-2 text-sm leading-6 text-gray-600">{{ $item['deskripsi'] }}</p>
+
+                                <div class="mt-4 grid gap-3 rounded-2xl bg-gray-50 p-4">
+                                    <div>
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">Hasil penggunaan</p>
+                                        <p class="mt-1 text-sm leading-6 text-gray-700">{{ $item['hasil'] }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-gray-400">
+                                    @if(!empty($item['tanggal']))
+                                        <span class="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 shadow-sm">Dipakai {{ $item['tanggal'] }}</span>
+                                    @endif
+                                    @if(!empty($item['status']))
+                                        <span class="inline-flex items-center gap-1 rounded-full bg-pink-50 px-3 py-1 font-semibold text-pink-600">{{ $item['status'] }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </article>
+                    @empty
+                        <div class="w-[82vw] max-w-sm shrink-0 rounded-3xl border border-dashed border-pink-200 bg-pink-50/50 p-8 text-center lg:col-span-3 lg:w-auto lg:max-w-none">
+                            <p class="text-sm font-semibold text-gray-800">Belum ada donasi yang ditampilkan ke publik.</p>
+                            <p class="mt-2 text-sm leading-6 text-gray-500">
+                                Kalau sudah ada data asli, admin tinggal menyalakan toggle <code>Tampilkan di halaman publik</code> pada donasi yang ingin dibuka ke pengunjung.
+                            </p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
         </div>
     </section>
 
