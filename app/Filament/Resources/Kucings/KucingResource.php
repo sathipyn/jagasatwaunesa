@@ -70,7 +70,9 @@ class KucingResource extends Resource
                         ->native(false),
 
                     TextInput::make('warna_kucing')
-                        ->label('Warna'),
+                        ->label('Warna')
+                        ->maxLength(50)
+                        ->placeholder('Contoh: Putih-Hitam, oren, belang putih abu-abu'),
 
                     Textarea::make('lokasi_kucing')
                         ->label('Lokasi')
