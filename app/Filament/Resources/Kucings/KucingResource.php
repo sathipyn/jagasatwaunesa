@@ -108,6 +108,19 @@ class KucingResource extends Resource
                         ->default(false)
                         ->columnSpanFull(),
 
+                    Toggle::make('tampil_di_beranda')
+                        ->label('Tampilkan di Beranda')
+                        ->default(false)
+                        ->helperText('Aktifkan jika kucing ini ingin dimunculkan di preview halaman beranda.')
+                        ->columnSpanFull(),
+
+                    TextInput::make('urutan_beranda')
+                        ->label('Urutan Beranda')
+                        ->numeric()
+                        ->default(0)
+                        ->minValue(0)
+                        ->helperText('Angka lebih kecil tampil lebih dulu di beranda.'),
+
                     Textarea::make('deskripsi')
                         ->label('Deskripsi')
                         ->rows(3)
@@ -206,7 +219,21 @@ class KucingResource extends Resource
                     ->sortable()
                     ->toggleable(),
 
-                    TextColumn::make('deskripsi')
+                ToggleColumn::make('tampil_di_beranda')
+                    ->label('Beranda')
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->onIcon('heroicon-o-star')
+                    ->offIcon('heroicon-o-x-mark')
+                    ->sortable()
+                    ->toggleable(),
+
+                TextColumn::make('urutan_beranda')
+                    ->label('Urutan')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('deskripsi')
                     ->label('Deskripsi')
                     ->columnSpanFull()
                     ->toggleable(),
@@ -227,6 +254,9 @@ class KucingResource extends Resource
 
                 Tables\Filters\TernaryFilter::make('open_adopsi')
                     ->label('Open Adopsi'),
+
+                Tables\Filters\TernaryFilter::make('tampil_di_beranda')
+                    ->label('Beranda'),
 
                 Tables\Filters\SelectFilter::make('steril_kucing')
                     ->label('Steril')

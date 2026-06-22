@@ -142,7 +142,7 @@
             <div class="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
                 <div class="text-center sm:text-left">
                     <h2 class="mb-2 text-3xl font-bold text-gray-900">Kenalan sama kucing-kucing kampus</h2>
-                    <p class="text-gray-500">Lihat beberapa profil terbaru, lokasi muncul, dan lanjut baca detailnya</p>
+                    <p class="text-gray-500">Lihat beberapa profil pilihan, lokasi muncul, dan lanjut baca detailnya</p>
                 </div>
                 <div class="text-center sm:text-right">
                     <a href="{{ route('kucing.public') }}" class="inline-flex items-center gap-2 font-semibold text-pink-500 transition hover:text-pink-600">

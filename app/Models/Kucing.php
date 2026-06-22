@@ -13,7 +13,9 @@ class Kucing extends Model
     protected $table = 'kucing';
 
     protected $casts = [
-    'foto' => 'array',
+        'foto' => 'array',
+        'tampil_di_beranda' => 'boolean',
+        'urutan_beranda' => 'integer',
     ];
 
     protected $fillable = [
@@ -26,6 +28,8 @@ class Kucing extends Model
         'lokasi_kucing',
         'foto',
         'open_adopsi',
+        'tampil_di_beranda',
+        'urutan_beranda',
     ];
 
     protected function casts(): array

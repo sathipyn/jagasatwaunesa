@@ -37,12 +37,32 @@ Route::get('/', function () {
             ->get();
     });
 
-    $kucingPublik = Cache::remember('public.home.kucing', now()->addMinutes(10), function () {
-        return Kucing::query()
+    $kucingPublik = Cache::remember('public.home.kucing.v2', now()->addMinutes(10), function () {
+        $kucingPilihanBeranda = Kucing::query()
             ->withCount('komentar')
-            ->latest()
+            ->where('tampil_di_beranda', true)
+            ->orderBy('urutan_beranda')
+            ->orderByDesc('updated_at')
             ->take(4)
             ->get();
+
+        if ($kucingPilihanBeranda->isEmpty()) {
+            return Kucing::query()
+                ->withCount('komentar')
+                ->latest()
+                ->take(4)
+                ->get();
+        }
+
+        $kucingTambahan = Kucing::query()
+            ->withCount('komentar')
+            ->where('tampil_di_beranda', false)
+            ->whereNotIn('id', $kucingPilihanBeranda->pluck('id'))
+            ->latest()
+            ->take(4 - $kucingPilihanBeranda->count())
+            ->get();
+
+        return $kucingPilihanBeranda->concat($kucingTambahan)->take(4);
     });
 
     $kucingCount = Cache::remember('public.home.kucing_count', now()->addMinutes(10), fn () => Kucing::count());
