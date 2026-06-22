@@ -102,7 +102,7 @@ Route::get('/kegiatan/{kegiatan:slug}', function (Kegiatan $kegiatan) {
 })->name('kegiatan.show');
 
 Route::get('/donasi-publik', function () {
-    $contohPenggunaanDonasi = Cache::remember('public.donasi.contoh_penggunaan.v2', now()->addMinutes(10), function () {
+    $contohPenggunaanDonasi = Cache::remember('public.donasi.contoh_penggunaan.v3', now()->addMinutes(10), function () {
         if (! Schema::hasColumn('donasi', 'tampil_di_publik')) {
             return collect();
         }
@@ -129,11 +129,12 @@ Route::get('/donasi-publik', function () {
 
                 return [
                     'kategori' => $tujuanLabel,
-                    'judul' => $donasi->hasil_penggunaan
-                        ? Str::limit($donasi->hasil_penggunaan, 56)
-                        : 'Donasi untuk kebutuhan ' . Str::lower($tujuanLabel),
+                    'judul' => $donasi->deskripsi
+                        ? Str::limit($donasi->deskripsi, 56)
+                        : 'Catatan tambahan belum diisi',
                     'nominal' => 'Rp' . number_format((float) $donasi->jumlah_donasi, 0, ',', '.'),
-                    'deskripsi' => $donasi->deskripsi
+                    'tujuan' => $tujuanLabel,
+                    'catatan' => $donasi->deskripsi
                         ?: 'Donasi masuk pada ' . $donasi->tanggal_donasi->format('d M Y') . '.',
                     'hasil' => $donasi->hasil_penggunaan
                         ?: 'Penggunaan dana akan diperbarui setelah penyaluran.',

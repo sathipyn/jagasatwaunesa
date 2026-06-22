@@ -67,7 +67,11 @@
                                 </div>
 
                                 <h3 class="mt-4 text-xl font-extrabold leading-7 text-gray-900">{{ $item['judul'] }}</h3>
-                                <p class="mt-2 text-sm leading-6 text-gray-600">{{ $item['deskripsi'] }}</p>
+
+                                <div class="mt-3 rounded-2xl border border-pink-100 bg-pink-50/60 p-4">
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-pink-500">Tujuan donasi</p>
+                                    <p class="mt-1 text-sm font-semibold text-gray-800">{{ $item['tujuan'] }}</p>
+                                </div>
 
                                 <div class="mt-4 grid gap-3 rounded-2xl bg-gray-50 p-4">
                                     <div>
