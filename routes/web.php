@@ -37,7 +37,7 @@ Route::get('/', function () {
             ->get();
     });
 
-    $kucingPublik = Cache::remember('public.home.kucing.v2', now()->addMinutes(10), function () {
+    $kucingPublik = Cache::remember('public.home.kucing.v3', now()->addMinutes(10), function () {
         $kucingPilihanBeranda = Kucing::query()
             ->withCount('komentar')
             ->where('tampil_di_beranda', true)

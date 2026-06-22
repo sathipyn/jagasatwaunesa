@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Komentar;
 use App\Models\Adopsi;
 
@@ -53,5 +54,17 @@ class Kucing extends Model
     public function adopsi()
     {
         return $this->hasMany(Adopsi::class);
+    }
+
+    protected static function booted(): void
+    {
+        $flushHomepageCache = function (): void {
+            Cache::forget('public.home.kucing.v2');
+            Cache::forget('public.home.kucing_count');
+        };
+
+        static::saved($flushHomepageCache);
+        static::deleted($flushHomepageCache);
+        static::restored($flushHomepageCache);
     }
 }
