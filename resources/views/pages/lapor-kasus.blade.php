@@ -44,9 +44,9 @@
                     </div>
                 </div>
 
-                <div class="-mx-4 flex gap-5 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
+                <div class="-mx-4 flex gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
                     @forelse($contohLaporanKasus as $item)
-                        <article class="w-[82vw] max-w-sm shrink-0 overflow-hidden rounded-[1.75rem] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg lg:w-auto lg:max-w-none">
+                        <article class="w-[72vw] max-w-[19rem] shrink-0 overflow-hidden rounded-[1.5rem] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg sm:w-[58vw] sm:max-w-[22rem] lg:w-auto lg:max-w-none">
                             <div class="aspect-[16/10] bg-gradient-to-br from-pink-100 via-rose-50 to-amber-50">
                                 @if(!empty($item['foto']))
                                     <img
@@ -61,17 +61,17 @@
                                 @endif
                             </div>
 
-                            <div class="p-5">
+                            <div class="p-4 sm:p-5">
                                 <div class="flex items-start justify-between gap-3">
                                     <span class="inline-flex rounded-full bg-pink-100 px-3 py-1 text-xs font-semibold text-pink-700">
                                         {{ $item['kategori'] }}
                                     </span>
                                 </div>
 
-                                <h3 class="mt-4 text-xl font-extrabold leading-7 text-gray-900">{{ $item['judul'] }}</h3>
+                                <h3 class="mt-3 text-lg font-extrabold leading-6 text-gray-900 sm:mt-4 sm:text-xl sm:leading-7">{{ $item['judul'] }}</h3>
                                 <p class="mt-2 text-sm leading-6 text-gray-600">{{ $item['deskripsi'] }}</p>
 
-                                <div class="mt-4 grid gap-3 rounded-2xl bg-gray-50 p-4">
+                                <div class="mt-3 grid gap-3 rounded-2xl bg-gray-50 p-4 sm:mt-4">
                                     <div>
                                         <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">Lokasi</p>
                                         <p class="mt-1 text-sm font-medium text-gray-800">{{ $item['lokasi'] }}</p>
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-gray-400">
+                                <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-gray-400 sm:mt-4">
                                     @if(!empty($item['tanggal']))
                                         <span class="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 shadow-sm">Dilaporkan {{ $item['tanggal'] }}</span>
                                     @endif
@@ -94,7 +94,7 @@
                             </div>
                         </article>
                     @empty
-                        <div class="w-[82vw] max-w-sm shrink-0 rounded-3xl border border-dashed border-pink-200 bg-pink-50/50 p-8 text-center lg:col-span-3 lg:w-auto lg:max-w-none">
+                        <div class="w-[72vw] max-w-[19rem] shrink-0 rounded-3xl border border-dashed border-pink-200 bg-pink-50/50 p-6 text-center sm:w-[58vw] sm:max-w-[22rem] lg:col-span-3 lg:w-auto lg:max-w-none">
                             <p class="text-sm font-semibold text-gray-800">Belum ada laporan kasus untuk ditampilkan.</p>
                         </div>
                     @endforelse

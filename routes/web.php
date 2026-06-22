@@ -162,7 +162,7 @@ Route::get('/lapor-kasus', function () {
             ->take(3)
             ->get()
             ->map(function (LaporanKasus $laporan) {
-                $fotoKasus = $laporan->bukti_pendukung[0] ?? $laporan->foto_penanganan[0] ?? null;
+                $fotoKasus = $laporan->foto_penanganan[0] ?? $laporan->bukti_pendukung[0] ?? null;
 
                 return [
                     'kategori' => LaporanKasus::kategoriKasusLabel($laporan->kategori_kasus),
