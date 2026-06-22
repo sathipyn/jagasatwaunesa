@@ -59,12 +59,11 @@ class Kucing extends Model
     protected static function booted(): void
     {
         $flushHomepageCache = function (): void {
-            Cache::forget('public.home.kucing.v2');
+            Cache::forget('public.home.kucing.v3');
             Cache::forget('public.home.kucing_count');
         };
 
         static::saved($flushHomepageCache);
         static::deleted($flushHomepageCache);
-        static::restored($flushHomepageCache);
     }
 }
