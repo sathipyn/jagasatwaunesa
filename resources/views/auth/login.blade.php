@@ -9,7 +9,7 @@
                 <img src="{{ asset('images/logojagasatwa.png') }}" alt="Logo JagaSatwa" class="mx-auto mb-6 h-28 w-28 rounded-full object-cover shadow-xl shadow-pink-500/30">
                 <h1 class="text-4xl font-extrabold mb-4">Halo, Sobat JAGAT!</h1>
                 <p class="text-pink-100 text-lg max-w-sm mx-auto">
-                    Selamat datang kembali di keluarga JagaSatwa UNESA. Yuk, masuk ke akunmu!
+                    Selamat datang kembali di keluarga JagaSatwa UNESA. Yuk, masuk ke akun kamu!
                 </p>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <h1 class="mt-3 text-2xl font-extrabold"><span class="text-pink-500">Jaga</span>Satwa</h1>
                 </div>
 
-                <h2 class="text-2xl font-bold text-gray-900 mb-1">Masuk ke Akunmu</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-1">Yuk,Masuk ke Akun Kamu!</h2>
                 <p class="text-gray-500 mb-8">Masukkan email dan password kamu</p>
 
                 @if(session('status'))
