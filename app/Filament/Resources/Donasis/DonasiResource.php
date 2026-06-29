@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Donasis;
 use App\Filament\Resources\Donasis\Pages;
 use App\Models\Donasi;
 use BackedEnum;
+use UnitEnum;
 
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
@@ -38,9 +39,10 @@ class DonasiResource extends Resource
     protected static ?string $model = Donasi::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Banknotes;
     protected static ?string $navigationLabel = 'Data Donasi';
+    protected static string|UnitEnum|null $navigationGroup = 'Donasi';
     protected static ?string $modelLabel = 'Donasi';
     protected static ?string $pluralModelLabel = 'Data Donasi';
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 1;
 
     // Badge total donasi masuk
     public static function getNavigationBadge(): ?string

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Edukasis;
 use App\Filament\Resources\Edukasis\Pages;
 use App\Models\Edukasi;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -32,9 +33,10 @@ class EdukasiResource extends Resource
     protected static ?string $model = Edukasi::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::AcademicCap;
     protected static ?string $navigationLabel = 'Data Edukasi';
+    protected static string|UnitEnum|null $navigationGroup = 'Informasi & Kegiatan';
     protected static ?string $modelLabel = 'Edukasi';
     protected static ?string $pluralModelLabel = 'Data Edukasi';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     public static function getNavigationBadge(): ?string
     {

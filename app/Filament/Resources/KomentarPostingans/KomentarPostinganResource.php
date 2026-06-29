@@ -5,6 +5,7 @@ namespace App\Filament\Resources\KomentarPostingans;
 use App\Filament\Resources\KomentarPostingans\Pages;
 use App\Models\KomentarPostingan;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -20,9 +21,10 @@ class KomentarPostinganResource extends Resource
     protected static ?string $model = KomentarPostingan::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ChatBubbleLeftRight;
     protected static ?string $navigationLabel = 'Komentar Postingan';
+    protected static string|UnitEnum|null $navigationGroup = 'Informasi & Kegiatan';
     protected static ?string $modelLabel = 'Komentar Postingan';
     protected static ?string $pluralModelLabel = 'Komentar Postingan';
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 3;
 
     public static function getNavigationBadge(): ?string
     {

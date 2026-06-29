@@ -78,7 +78,8 @@ class DonasiForm extends Component
         $riwayat = [];
 
         if (Auth::check()) {
-            $riwayat = Donasi::where('user_id', Auth::id())
+            $riwayat = Donasi::query()
+                ->where('user_id', Auth::id())
                 ->latest('tanggal_donasi')
                 ->latest('created_at')
                 ->get();

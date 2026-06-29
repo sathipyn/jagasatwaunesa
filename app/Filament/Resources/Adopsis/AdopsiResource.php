@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Adopsis;
 use App\Filament\Resources\Adopsis\Pages;
 use App\Models\Adopsi;
 use BackedEnum;
+use UnitEnum;
 
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
@@ -35,10 +36,11 @@ class AdopsiResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Moon;
 
     protected static ?string $navigationLabel = 'Data Adopsi';
+    protected static string|UnitEnum|null $navigationGroup = 'Data Kucing';
     protected static ?string $modelLabel = 'Adopsi';
     protected static ?string $pluralModelLabel = 'Data Adopsi';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 2;
 
  
     // 🔥 Badge jumlah pending

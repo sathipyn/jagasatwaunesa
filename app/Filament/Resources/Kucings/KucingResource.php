@@ -7,6 +7,7 @@ use App\Filament\Resources\Kucings\Pages;
 use App\Filament\Resources\Kucings\RelationManagers\KomentarRelationManager;
 use App\Models\Kucing;
 use BackedEnum;
+use UnitEnum;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 use Filament\Resources\Resource;
@@ -41,9 +42,10 @@ class KucingResource extends Resource
     protected static ?string $model = Kucing::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Heart;
     protected static ?string $navigationLabel = 'Data Kucing';
+    protected static string|UnitEnum|null $navigationGroup = 'Data Kucing';
     protected static ?string $modelLabel = 'Kucing';
     protected static ?string $pluralModelLabel = 'Data Kucing';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 1;
 
 
 

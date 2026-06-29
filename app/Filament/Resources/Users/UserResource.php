@@ -8,6 +8,7 @@ use App\Filament\Resources\Users\RelationManagers\DonasiRelationManager;
 use App\Filament\Resources\Users\RelationManagers\LaporanKasusRelationManager;
 use App\Models\User;
 use BackedEnum;
+use UnitEnum;
 
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
@@ -31,9 +32,10 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Users;
     protected static ?string $navigationLabel = 'Data User';
+    protected static string|UnitEnum|null $navigationGroup = 'Data Internal';
     protected static ?string $modelLabel = 'User';
     protected static ?string $pluralModelLabel = 'Data User';
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 2;
 
     
     // FORM (view only, admin tidak buat user)

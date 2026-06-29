@@ -59,7 +59,7 @@ class AdopsiPublicForm extends Component
             $this->nama_lengkap = $user->nama_lengkap ?? '';
         }
 
-        if ($kucingId && Kucing::where('id', $kucingId)->where('open_adopsi', true)->exists()) {
+        if ($kucingId && Kucing::query()->whereKey($kucingId)->where('open_adopsi', true)->exists()) {
             $this->kucing_id = $kucingId;
         }
     }

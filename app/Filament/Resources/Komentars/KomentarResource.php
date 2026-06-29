@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Komentars;
 use App\Filament\Resources\Komentars\Pages;
 use App\Models\Komentar;
 use BackedEnum;
+use UnitEnum;
 
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
@@ -29,9 +30,10 @@ class KomentarResource extends Resource
     protected static ?string $model = Komentar::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ChatBubbleBottomCenterText;
     protected static ?string $navigationLabel = 'Komentar';
+    protected static string|UnitEnum|null $navigationGroup = 'Data Kucing';
     protected static ?string $modelLabel = 'Komentar';
     protected static ?string $pluralModelLabel = 'Komentar';
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 3;
 
     // Badge jumlah komentar
     public static function getNavigationBadge(): ?string

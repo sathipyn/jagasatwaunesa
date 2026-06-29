@@ -69,7 +69,7 @@
                 </div>
 
                 <div>
-                    <label class="mb-1.5 block text-sm font-medium text-gray-700">Pro dokter hewan? <span class="text-red-500">*</span></label>
+                    <label class="mb-1.5 block text-sm font-medium text-gray-700">Siap ke dokter hewan apabila kucing sakit? <span class="text-red-500">*</span></label>
                     <select wire:model="pro_dokter_hewan" class="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none transition focus:border-pink-300 focus:ring-2 focus:ring-pink-200">
                         <option value="">Pilih jawaban</option>
                         <option value="Ya">Ya</option>

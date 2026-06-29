@@ -14,6 +14,32 @@ use App\Models\Edukasi;
 use App\Models\Kegiatan;
 use App\Models\Kucing;
 use App\Models\LaporanKasus;
+use App\Models\PenggunaanDana;
+
+$getTransparencyReportData = function (): array {
+    return Cache::remember('public.donasi.transparansi_dana.v2', now()->addMinutes(10), function () {
+        $totalMasuk = (float) Donasi::sum('jumlah_donasi');
+        $totalKeluar = 0.0;
+        $rincianPenggunaanPerBulan = collect();
+
+        if (Schema::hasTable('penggunaan_dana')) {
+            $rincianPenggunaan = PenggunaanDana::query()
+                ->ditampilkanDiPublik()
+                ->orderByDesc('tanggal')
+                ->get();
+
+            $totalKeluar = (float) PenggunaanDana::sum('jumlah');
+            $rincianPenggunaanPerBulan = PenggunaanDana::groupByMonth($rincianPenggunaan);
+        }
+
+        return [
+            'totalMasuk' => $totalMasuk,
+            'totalKeluar' => $totalKeluar,
+            'saldo' => $totalMasuk - $totalKeluar,
+            'rincianPenggunaanPerBulan' => $rincianPenggunaanPerBulan,
+        ];
+    });
+};
 
 // ==================== HALAMAN PUBLIK ====================
 Route::get('/', function () {
@@ -121,6 +147,10 @@ Route::get('/kegiatan/{kegiatan:slug}', function (Kegiatan $kegiatan) {
     ]);
 })->name('kegiatan.show');
 
+Route::get('/laporan-donasi', function () use ($getTransparencyReportData) {
+    return view('pages.laporan-donasi', $getTransparencyReportData());
+})->name('laporan-donasi.public');
+
 Route::get('/donasi-publik', function () {
     $contohPenggunaanDonasi = Cache::remember('public.donasi.contoh_penggunaan.v3', now()->addMinutes(10), function () {
         if (! Schema::hasColumn('donasi', 'tampil_di_publik')) {
@@ -166,7 +196,9 @@ Route::get('/donasi-publik', function () {
             ->all();
     });
 
-    return view('pages.donasi', compact('contohPenggunaanDonasi'));
+    return view('pages.donasi', [
+        'contohPenggunaanDonasi' => $contohPenggunaanDonasi,
+    ]);
 })->name('donasi.public');
 
 Route::get('/lapor-kasus', function () {

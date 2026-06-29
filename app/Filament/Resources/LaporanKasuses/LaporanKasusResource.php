@@ -5,6 +5,7 @@ namespace App\Filament\Resources\LaporanKasuses;
 use App\Filament\Resources\LaporanKasuses\Pages;
 use App\Models\LaporanKasus;
 use BackedEnum;
+use UnitEnum;
 
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
@@ -39,10 +40,11 @@ class LaporanKasusResource extends Resource
     protected static ?string $model = LaporanKasus::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ExclamationTriangle;
     protected static ?string $navigationLabel = 'Laporan Kasus';
+    protected static string|UnitEnum|null $navigationGroup = 'Laporan Kasus';
     protected static ?string $modelLabel = 'Laporan Kasus';
     protected static ?string $pluralModelLabel = 'Laporan Kasus';
     protected static ?string $slug = 'laporan-kasus';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     // Badge jumlah laporan yg masih Diproses
     public static function getNavigationBadge(): ?string

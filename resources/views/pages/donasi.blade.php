@@ -40,10 +40,104 @@
                 </div>
             </div>
 
-            <div class="mx-auto mt-10 max-w-5xl space-y-6">
-                <div class="-mx-4 flex gap-4 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
+            <style>
+                .donasi-photo-button {
+                    appearance: none;
+                    border: 0;
+                    padding: 0;
+                    background: transparent;
+                    cursor: zoom-in;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .donasi-photo-thumb {
+                    width: 3.25rem;
+                    height: 3.25rem;
+                    border-radius: 0.875rem;
+                    object-fit: cover;
+                    border: 1px solid #e5e7eb;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+                }
+
+                .donasi-photo-modal {
+                    position: fixed;
+                    inset: 0;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1rem;
+                    background: rgba(15, 23, 42, 0.78);
+                    z-index: 9999;
+                }
+
+                .donasi-photo-modal.is-open {
+                    display: flex;
+                }
+
+                .donasi-photo-modal-panel {
+                    width: min(92vw, 56rem);
+                    border-radius: 1.5rem;
+                    background: #fff;
+                    overflow: hidden;
+                    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+                }
+
+                .donasi-photo-modal-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    padding: 1rem 1.25rem;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+
+                .donasi-photo-modal-title {
+                    margin: 0;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    color: #111827;
+                }
+
+                .donasi-photo-modal-close {
+                    border: 0;
+                    background: #f3f4f6;
+                    color: #111827;
+                    width: 2.25rem;
+                    height: 2.25rem;
+                    border-radius: 9999px;
+                    cursor: pointer;
+                    font-size: 1.25rem;
+                    line-height: 1;
+                }
+
+                .donasi-photo-modal-image {
+                    width: 100%;
+                    max-height: 80vh;
+                    object-fit: contain;
+                    background: #f8fafc;
+                }
+            </style>
+
+            <div class="mx-auto mt-12 max-w-6xl rounded-[2rem] border border-pink-100 bg-white/95 p-6 shadow-xl shadow-pink-100/40 sm:p-8">
+                <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                    <div class="max-w-3xl">
+                        <p class="text-sm font-semibold text-pink-500">Contoh penggunaan donasi</p>
+                        <h2 class="mt-1 text-2xl font-extrabold text-gray-900">Lihat contoh penggunaan & laporan penggunaan dana</h2>
+                    </div>
+
+                    <a
+                        href="{{ route('laporan-donasi.public') }}"
+                        class="inline-flex items-center justify-center rounded-full bg-pink-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-200 transition hover:bg-pink-600"
+                    >
+                        Lihat laporan donasi lengkap
+                    </a>
+                </div>
+
+                <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                     @forelse($contohPenggunaanDonasi as $item)
-                        <article class="w-[72vw] max-w-[19rem] shrink-0 overflow-hidden rounded-[1.5rem] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg sm:w-[58vw] sm:max-w-[22rem] lg:w-auto lg:max-w-none">
+                        <article class="overflow-hidden rounded-[1.5rem] border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                             <div class="aspect-[16/10] bg-gradient-to-br from-pink-100 via-rose-50 to-amber-50">
                                 @if(!empty($item['foto']))
                                     <img
@@ -66,13 +160,13 @@
                                     <span class="text-xs font-bold text-gray-400 sm:text-sm">{{ $item['nominal'] }}</span>
                                 </div>
 
-                                <h3 class="mt-3 text-lg font-extrabold leading-6 text-gray-900 sm:mt-4 sm:text-xl sm:leading-7">{{ $item['judul'] }}</h3>
+                                <h3 class="mt-3 text-lg font-extrabold leading-6 text-gray-900 sm:mt-4 sm:text-xl sm:leading-7">
+                                    {{ $item['judul'] }}
+                                </h3>
 
-                                <div class="mt-3 grid gap-3 rounded-2xl bg-gray-50 p-4">
-                                    <div>
-                                        <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">Hasil penggunaan</p>
-                                        <p class="mt-1 text-sm leading-6 text-gray-700">{{ $item['hasil'] }}</p>
-                                    </div>
+                                <div class="mt-3 rounded-2xl bg-gray-50 p-4">
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">Hasil penggunaan</p>
+                                    <p class="mt-1 text-sm leading-6 text-gray-700">{{ $item['hasil'] }}</p>
                                 </div>
 
                                 <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-gray-400 sm:mt-4">
@@ -86,12 +180,70 @@
                             </div>
                         </article>
                     @empty
-                        <div class="w-[72vw] max-w-[19rem] shrink-0 rounded-3xl border border-dashed border-pink-200 bg-pink-50/50 p-6 text-center sm:w-[58vw] sm:max-w-[22rem] lg:col-span-3 lg:w-auto lg:max-w-none">
-                            <p class="text-sm font-semibold text-gray-800">Belum ada donasi untuk ditampilkan.</p>
+                        <div class="rounded-[1.5rem] border border-dashed border-pink-200 bg-pink-50/50 p-6 text-center md:col-span-2 xl:col-span-3">
+                            <p class="text-sm font-semibold text-gray-800">Belum ada contoh penggunaan donasi untuk ditampilkan.</p>
+                            <p class="mt-1 text-sm text-gray-500">Nanti kartu penggunaan dana akan muncul di sini setelah admin menambahkan data publik.</p>
                         </div>
                     @endforelse
                 </div>
             </div>
+
+            <div class="donasi-photo-modal" id="donasiPhotoModal" aria-hidden="true">
+                <div class="donasi-photo-modal-panel" role="dialog" aria-modal="true" aria-labelledby="donasiPhotoModalTitle">
+                    <div class="donasi-photo-modal-header">
+                        <div>
+                            <h3 class="donasi-photo-modal-title" id="donasiPhotoModalTitle">Pratinjau Foto Bukti</h3>
+                            <p class="mt-1 text-sm text-gray-500">Klik di luar gambar atau tombol tutup untuk menutup.</p>
+                        </div>
+                        <button type="button" class="donasi-photo-modal-close" data-donasi-photo-close aria-label="Tutup">&times;</button>
+                    </div>
+                    <img src="" alt="Foto bukti penggunaan dana" class="donasi-photo-modal-image" id="donasiPhotoModalImage">
+                </div>
+            </div>
+
+            <script>
+                (function () {
+                    const modal = document.getElementById('donasiPhotoModal');
+                    const modalImage = document.getElementById('donasiPhotoModalImage');
+                    const modalTitle = document.getElementById('donasiPhotoModalTitle');
+
+                    function openModal(src, title) {
+                        if (!src) {
+                            return;
+                        }
+
+                        modalImage.src = src;
+                        modalTitle.textContent = title || 'Pratinjau Foto Bukti';
+                        modal.classList.add('is-open');
+                        modal.setAttribute('aria-hidden', 'false');
+                    }
+
+                    function closeModal() {
+                        modal.classList.remove('is-open');
+                        modal.setAttribute('aria-hidden', 'true');
+                        modalImage.src = '';
+                    }
+
+                    document.addEventListener('click', function (event) {
+                        const trigger = event.target.closest('[data-donasi-photo-trigger]');
+
+                        if (trigger) {
+                            openModal(trigger.dataset.donasiPhotoSrc, trigger.dataset.donasiPhotoTitle);
+                            return;
+                        }
+
+                        if (event.target.matches('[data-donasi-photo-close]') || event.target === modal) {
+                            closeModal();
+                        }
+                    });
+
+                    document.addEventListener('keydown', function (event) {
+                        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                            closeModal();
+                        }
+                    });
+                })();
+            </script>
         </div>
     </section>
 

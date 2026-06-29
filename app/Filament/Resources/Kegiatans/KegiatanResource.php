@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Kegiatans;
 use App\Filament\Resources\Kegiatans\Pages;
 use App\Models\Kegiatan;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -32,9 +33,10 @@ class KegiatanResource extends Resource
     protected static ?string $model = Kegiatan::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
     protected static ?string $navigationLabel = 'Info Komunitas';
+    protected static string|UnitEnum|null $navigationGroup = 'Informasi & Kegiatan';
     protected static ?string $modelLabel = 'Info Komunitas';
     protected static ?string $pluralModelLabel = 'Info Komunitas';
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 2;
 
     public static function getNavigationBadge(): ?string
     {

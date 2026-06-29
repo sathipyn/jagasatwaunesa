@@ -77,7 +77,8 @@ class LaporKasusForm extends Component
     {
         $riwayat = [];
         if (Auth::check()) {
-            $riwayat = LaporanKasus::where('user_id', Auth::id())
+            $riwayat = LaporanKasus::query()
+                ->where('user_id', Auth::id())
                 ->orderBy('created_at', 'desc')
                 ->get();
         }

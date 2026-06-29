@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Anggotas;
 use App\Filament\Resources\Anggotas\Pages;
 use App\Models\Anggota;
 use BackedEnum;
+use UnitEnum;
 
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
@@ -32,6 +33,7 @@ class AnggotaResource extends Resource
     protected static ?string $model = Anggota::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
     protected static ?string $navigationLabel = 'Data Anggota';
+    protected static string|UnitEnum|null $navigationGroup = 'Data Internal';
     protected static ?string $modelLabel = 'Anggota';
     protected static ?string $pluralModelLabel = 'Data Anggota';
     protected static ?int $navigationSort = 1;
